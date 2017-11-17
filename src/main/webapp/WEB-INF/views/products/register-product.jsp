@@ -11,15 +11,15 @@
 	<form action="/casadocodigo/produtos" method="post">
 	
 		<label for="title">Título</label>
-		<input type="text" name="title" id="title"/>
+		<input type="text" name="title" id="title"/> <br/>
 		
-		<label for="description">Descrição</label>
-		<textarea rows="10" cols="20" name="description" id="description"></textarea>
+		<label for="description">Descrição</label><br/>
+		<textarea rows="10" cols="20" name="description" id="description"></textarea><br/>
 		
-		<label for="title">Número de páginas</label>
+		<label for="title">Número de páginas</label><br/>
 		<input type="text" name="pages" id="pages"/>
 		
-		<br/>
+		<br/><br/>
 		
 		<input type="submit" value="Enviar"/>
 	</form>
