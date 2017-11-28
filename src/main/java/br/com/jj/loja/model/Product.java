@@ -1,7 +1,10 @@
 package br.com.jj.loja.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,11 +16,12 @@ import javax.persistence.Table;
 public class Product implements Serializable {
 
 	private static final long serialVersionUID = -1463915967521927420L;
-	
+
 	private Integer id;
 	private String title;
 	private String description;
 	private int pages;
+	private List<Price> prices = new ArrayList<>();
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,6 +55,15 @@ public class Product implements Serializable {
 
 	public void setPages(int pages) {
 		this.pages = pages;
+	}
+
+	@ElementCollection
+	public List<Price> getPrices() {
+		return prices;
+	}
+
+	public void setPrices(List<Price> prices) {
+		this.prices = prices;
 	}
 
 	@Override
