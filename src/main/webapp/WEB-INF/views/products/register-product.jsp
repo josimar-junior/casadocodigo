@@ -23,7 +23,7 @@
 		<c:forEach items="${types}" var="bookType" varStatus="status">
 			<div>
 				<label for="price_${bookType}">${bookType}</label>
-				<input type="checkbox" name="book" id="price_${bookType}"/>
+				<input type="text" name="prices[${status.index}].value" id="price_${bookType}"/>
 				<input type="hidden" name="prices[${status.index}].bookType" value="${bookType}"/>
 			</div>
 		</c:forEach>
