@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,15 +9,23 @@
 </head>
 <body>
 	
-	<form action="/casadocodigo/produtos" method="post">
+	<form action="${spring:mvcUrl("saveProduct").build()}" method="post">
 	
-		<label for="title">TÃ­tulo</label>
+		<spring:hasBindErrors name="product">
+			<ul>
+				<c:forEach items="${errors.allErrors}" var="error">
+					<li><spring:message code="${error.code}" text="${error.defaultMessage}"/></li>
+				</c:forEach>
+			</ul>
+		</spring:hasBindErrors>
+	
+		<label for="title">Título</label>
 		<input type="text" name="title" id="title"/> <br/>
 		
-		<label for="description">DescriÃ§Ã£o</label><br/>
+		<label for="description">Descrição</label><br/>
 		<textarea rows="10" cols="20" name="description" id="description"></textarea><br/>
 		
-		<label for="title">NÃºmero de pÃ¡ginas</label><br/>
+		<label for="title">Número de páginas</label><br/>
 		<input type="text" name="pages" id="pages"/>
 		
 		<c:forEach items="${types}" var="bookType" varStatus="status">
