@@ -9,24 +9,25 @@
 </head>
 <body>
 	
-	<form action="${spring:mvcUrl("saveProduct").build()}" method="post">
+	<form:form action="${spring:mvcUrl('saveProduct').build()}" method="post" commandName="product">
 	
-		<spring:hasBindErrors name="product">
-			<ul>
-				<c:forEach items="${errors.allErrors}" var="error">
-					<li><spring:message code="${error.code}" text="${error.defaultMessage}"/></li>
-				</c:forEach>
-			</ul>
-		</spring:hasBindErrors>
-	
-		<label for="title">Título</label>
-		<input type="text" name="title" id="title"/> <br/>
+		<div>
+			<label for="title">Título</label>
+			<form:input path="title"/>
+			<form:errors path="title"/> <br/>
+		</div>
 		
-		<label for="description">Descrição</label><br/>
-		<textarea rows="10" cols="20" name="description" id="description"></textarea><br/>
+		<div>
+			<label for="description">Descrição</label><br/>
+			<form:textarea rows="10" cols="20" path="description"/>
+			<form:errors path="description"/> <br/>
+		</div>
 		
-		<label for="title">Número de páginas</label><br/>
-		<input type="text" name="pages" id="pages"/>
+		<div>
+			<label for="pages">Número de páginas</label><br/>
+			<input type="text" name="pages" id="pages"/>
+			<form:errors path="pages"/> <br/>
+		</div>
 		
 		<c:forEach items="${types}" var="bookType" varStatus="status">
 			<div>
@@ -40,7 +41,7 @@
 		<br/><br/>
 		
 		<input type="submit" value="Enviar"/>
-	</form>
+	</form:form>
 	
 </body>
 </html>
