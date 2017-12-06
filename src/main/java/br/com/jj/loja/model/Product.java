@@ -2,6 +2,7 @@ package br.com.jj.loja.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -9,7 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "product")
@@ -22,6 +27,8 @@ public class Product implements Serializable {
 	private String description;
 	private int pages;
 	private List<Price> prices = new ArrayList<>();
+	private Calendar releaseDate;
+	private String summaryPath;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +40,7 @@ public class Product implements Serializable {
 		this.id = id;
 	}
 
+	@NotBlank
 	public String getTitle() {
 		return title;
 	}
@@ -41,6 +49,8 @@ public class Product implements Serializable {
 		this.title = title;
 	}
 
+	@Lob
+	@NotBlank
 	public String getDescription() {
 		return description;
 	}
@@ -49,6 +59,7 @@ public class Product implements Serializable {
 		this.description = description;
 	}
 
+	@Min(30)
 	public int getPages() {
 		return pages;
 	}
@@ -64,6 +75,23 @@ public class Product implements Serializable {
 
 	public void setPrices(List<Price> prices) {
 		this.prices = prices;
+	}
+
+	// @DateTimeFormat(iso = ISO.DATE)
+	public Calendar getReleaseDate() {
+		return releaseDate;
+	}
+
+	public void setReleaseDate(Calendar releaseDate) {
+		this.releaseDate = releaseDate;
+	}
+
+	public String getSummaryPath() {
+		return summaryPath;
+	}
+
+	public void setSummaryPath(String summaryPath) {
+		this.summaryPath = summaryPath;
 	}
 
 	@Override

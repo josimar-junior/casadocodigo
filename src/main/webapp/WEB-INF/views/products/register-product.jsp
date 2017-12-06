@@ -4,12 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
 <title>Cadastro dos produtos</title>
 </head>
 <body>
 	
-	<form:form action="${spring:mvcUrl('saveProduct').build()}" method="post" commandName="product">
+	<form:form action="/casadocodigo/produtos" method="post" commandName="product" enctype="multipart/form-data">
 	
 		<div>
 			<label for="title">Título</label>
@@ -25,18 +25,29 @@
 		
 		<div>
 			<label for="pages">Número de páginas</label><br/>
-			<input type="text" name="pages" id="pages"/>
+			<form:input type="text" path="pages" id="pages"/>
 			<form:errors path="pages"/> <br/>
 		</div>
 		
 		<c:forEach items="${types}" var="bookType" varStatus="status">
 			<div>
 				<label for="price_${bookType}">${bookType}</label>
-				<input type="text" name="prices[${status.index}].value" id="price_${bookType}"/>
-				<input type="hidden" name="prices[${status.index}].bookType" value="${bookType}"/>
+				<form:input type="text" path="prices[${status.index}].value" id="price_${bookType}"/>
+				<form:input type="hidden" path="prices[${status.index}].bookType" value="${bookType}"/>
 			</div>
 		</c:forEach>
 		
+		<div>
+			<label for="releaseDate">Data de lançamento</label>
+			<form:input type="date" path="releaseDate"/>
+			<form:errors path="releaseDate"/>
+		</div>
+		
+		<div>
+			<label for="summary">Sumário do livro</label>
+			<input type="file" name="summary"/>
+			<form:errors path="summaryPath"/>
+		</div>
 		
 		<br/><br/>
 		
