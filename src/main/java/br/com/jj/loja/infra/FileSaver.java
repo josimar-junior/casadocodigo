@@ -1,4 +1,4 @@
-package br.com.jj.loja.conf;
+package br.com.jj.loja.infra;
 
 import java.io.File;
 import java.io.IOException;
